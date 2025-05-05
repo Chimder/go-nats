@@ -30,17 +30,6 @@ func main() {
 	}
 
 	streamName := "TRITCH_STATS"
-	_, err = js.CreateOrUpdateStream(ctx, jetstream.StreamConfig{
-		Name:      streamName,
-		Subjects:  []string{"tritch.stats"},
-		Retention: jetstream.LimitsPolicy,
-		MaxBytes:  1024 * 1024 * 1024,
-		Storage:   jetstream.FileStorage,
-	})
-	if err != nil && !isStreamAlreadyExists(err) {
-		log.Fatal("Failed to create stream:", err)
-	}
-
 	consumerName := "TRITCH_STATS_CONSUMER"
 	cons, err := js.CreateOrUpdateConsumer(ctx, streamName, jetstream.ConsumerConfig{
 		Name:          consumerName,
