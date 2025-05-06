@@ -57,7 +57,3 @@ func main() {
 	<-ctx.Done()
 	slog.Info("Shutting down server...")
 }
-
-func isStreamAlreadyExists(err error) bool {
-	return err.Error() == "nats: stream already in use"
-}
